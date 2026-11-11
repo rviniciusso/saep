@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAEPVision</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabaseClient.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="user-section" id="userSection">
+            <img src="assets/default-user.png" class="user-avatar" id="headerAvatar" alt="Foto Perfil">
+            <span id="headerUsername">@SAEPVision</span>
+            <button class="btn-black" id="btnVerPerfil" disabled>Ver Perfil</button>
+        </div>
+        <div class="company-section">
+            SAEPVision
+        </div>
+        <div class="login-section" id="authAction">
+            <button class="btn-black" id="btnOpenLogin">Login</button>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Digite o nome do fotógrafo... ex: @fotografo1">
+        <img src="assets/lupa.svg" alt="Buscar" class="search-icon">
+    </div>
+
+    <main class="gallery-grid" id="galleryGrid"></main>
+
+    <div class="modal-overlay hidden" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginModal">&times;</span>
+            <h2 class="modal-title">Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Digite seu e-mail">
+                    <small class="error-msg hidden" id="emailError">E-mail inválido ou vazio</small>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginSenha" placeholder="Digite sua senha">
+                    <small class="error-msg hidden" id="senhaError">A senha é obrigatória e não pode estar vazia</small>
+                </div>
+                <div class="error-msg hidden" id="loginGeneralError" style="margin-bottom: 12px; text-align: center;"></div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="btnCancelLogin">Cancelar</button>
+                    <button type="submit" class="btn-black">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="sidebar-menu hidden" id="sidebarMenu">
+        <span class="close-btn" id="closeSidebar">&times;</span>
+        <h3>Perfil do Fotógrafo</h3>
+        <p id="statsLikes" class="stat-item">0 Likes</p>
+        <p id="statsPosts" class="stat-item">0 Publicações</p>
+        
+        <div class="sidebar-section">
+            <button class="btn-black full-width" id="btnMinhasPublicacoes">Suas publicações</button>
+        </div>
+        
+        <button class="btn-danger full-width" id="btnLogout">Logout</button>
+    </div>
+
+    <div class="modal-overlay hidden" id="uploadModal">
+        <div class="modal-content wide">
+            <span class="close-btn" id="closeUploadModal">&times;</span>
+            <h3>Cadastrar Fotografia</h3>
+            <form id="uploadForm" class="upload-form">
+                <label>Título da Imagem</label>
+                <input type="text" id="imgTitulo" placeholder="ex.: Dedo de Deus">
+                <small class="error-msg hidden" id="tituloError">Título é obrigatório</small>
+
+                <label>Fonte de origem</label>
+                <input type="text" id="imgLocal" placeholder="ex.: Rio de Janeiro">
+                <small class="error-msg hidden" id="localError">Local é obrigatório</small>
+
+                <label>Imagem</label>
+                <input type="file" id="imgFile" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp" class="hidden-file-input">
+                <button type="button" class="btn-black" onclick="document.getElementById('imgFile').click()" style="margin-top: 5px;">Escolher arquivo</button>
+                <span id="fileNameDisplay" style="display: block; margin-top: 6px; font-size: 0.85rem;">Nenhum arquivo escolhido</span>
+
+                <button type="submit" class="btn-black" style="margin-top: 15px;">Cadastrar</button>
+            </form>
+            
+            <hr class="divider">
+            <h4>Suas Publicações</h4>
+            <div id="userPostsList" class="posts-manage-list"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-brand">SAEPVision</div>
+        <div class="social-icons">
+            <img src="assets/instagram.svg" alt="Instagram">
+            <img src="assets/tiktok.svg" alt="TikTok">
+            <img src="assets/linkedIn.svg" alt="LinkedIn">
+            <img src="assets/youtube.svg" alt="YouTube">
+        </div>
+        <div class="footer-copy">Copyright 2026-2027</div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
